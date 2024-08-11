@@ -11,14 +11,11 @@ const minutesValue = document.querySelector('span[data-minutes]');
 const secondsValue = document.querySelector('span[data-seconds]');
 const input = document.querySelector('#datetime-picker');
 
-// ВАРІАБЛЕС
-
 let userSelectedDate;
 let isActive = false;
 let intervalId = null;
 startBtn.disabled = true;
 
-// ОПЦІЇ ТА ВАЛІДАЦІЯ ВИБОРУ ДАТИ
 
 const showIziToast = () => {
   iziToast.show({
@@ -27,7 +24,7 @@ const showIziToast = () => {
     messageSize: '16px',
     messageLineHeight: '24px',
     backgroundColor: '#EF4040',
-    iconUrl: './img/x-octagon-error.svg',
+    iconUrl: './img/error-icon.svg',
     maxWidth: '302px',
     closeOnClick: true,
     position: 'topRight',
@@ -42,6 +39,7 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     console.log(selectedDates[0]);
+
     const selectedDate = selectedDates[0];
     const currentDate = new Date();
 
@@ -57,12 +55,11 @@ const options = {
 
 flatpickr('#datetime-picker', options);
 
-// ПОЧАТОК ВІДЛІКУ ПРИ НАТИСКАННІ 
-
 const onBtnClick = () => {
   if (isActive) {
     return;
   }
+
   const startTime = new Date(userSelectedDate).getTime();
   isActive = true;
 
@@ -81,17 +78,7 @@ const onBtnClick = () => {
   }, 1000);
 };
 
-// ФУНКЦІЯ ДЛЯ ЗУПИНКИ ТА ОЧИСТКИ 
-  
-const stopTimer = () => {
-  clearInterval(intervalId);
-  isActive = false;
-  input.disabled = false;
-  const time = convertMs(0);
-  updateTimer(time);
-};
-
-// КОНВЕРТАЦІЯ
+startBtn.addEventListener('click', onBtnClick);
 
 function convertMs(ms) {
 
@@ -108,11 +95,16 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 };
 
-// ДОДАЄМО НУЛІ ЗА ДОПОМОГОЮ ПАД
-
 const addLeadingZero = value => String(value).padStart(2, '0');
 
-// ВІДМАЛЮВАННЯ ТАЙМЕРУ
+const stopTimer = () => {
+  clearInterval(intervalId);
+  isActive = false;
+  input.disabled = false;
+  const time = convertMs(0);
+  updateTimer(time);
+};
+
 function updateTimer({ days, hours, minutes, seconds }) {
   daysValue.textContent = `${addLeadingZero(days)}`;
   hoursValue.textContent = `${addLeadingZero(hours)}`;
@@ -120,6 +112,5 @@ function updateTimer({ days, hours, minutes, seconds }) {
   secondsValue.textContent = `${addLeadingZero(seconds)}`;
 };
 
-startBtn.addEventListener('click', onBtnClick);
 
 

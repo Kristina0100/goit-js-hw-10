@@ -2,41 +2,59 @@ body {
   font-family: Montserrat, sans-serif;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  padding-top: 36px;
-  padding-left: 156px;
+.form {
+  width: 1440px;
+  height: 496px;
+  padding: 36px 156px;
 }
 
-input,
-fieldset {
-  max-width: 360px;
-  border-radius: 4px;
-  border: 1px solid #808080;
-}
-
-input[name='delay'] {
-  height: 40px;
-}
-
-fieldset {
-  height: 64px;
-  flex-shrink: 0;
-  margin-top: 30px;
-}
-
-fieldset label {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 48px;
-}
-
-input label {
+.delay {
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
+  margin-bottom: 30px;
+}
+
+.delay input {
+  width: 360px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid #808080;
+  padding: 8px 16px;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  cursor: pointer;
+}
+
+.delay input:hover {
+  border-color: #000;
+}
+
+.delay input:focus {
+  border-color: #4e75ff;
+  outline: none;
+}
+
+.fieldset {
+  width: 360px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid #808080;
+  padding: 24px 48px 8px;
+}
+
+.fieldset label {
+  cursor: pointer;
+}
+
+.fieldset label:first-of-type {
+  margin-right: 48px;
+}
+
+.fieldset:hover {
+  border-color: #000;
 }
 
 button {
@@ -54,5 +72,10 @@ button {
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0.64px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #6c8cff;
 }
