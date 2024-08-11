@@ -4,6 +4,37 @@ import "flatpickr/dist/flatpickr.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
+const startBtn = document.querySelector('button[data-start]');
+const daysValue = document.querySelector('span[data-days]');
+const hoursValue = document.querySelector('span[data-hours]');
+const minutesValue = document.querySelector('span[data-minutes]');
+const secondsValue = document.querySelector('span[data-seconds]');
+const input = document.querySelector('#datetime-picker');
+
+// ВАРІАБЛЕС
+
+let userSelectedDate;
+let isActive = false;
+let intervalId = null;
+startBtn.disabled = true;
+
+// ОПЦІЇ ТА ВАЛІДАЦІЯ ВИБОРУ ДАТИ
+
+const showIziToast = () => {
+  iziToast.show({
+    message: 'Please choose a date in the future',
+    messageColor: '#fff',
+    messageSize: '16px',
+    messageLineHeight: '24px',
+    backgroundColor: '#EF4040',
+    iconUrl: './img/x-octagon-error.svg',
+    maxWidth: '302px',
+    closeOnClick: true,
+    position: 'topRight',
+    progressBarColor: '#B51B1B',
+  });
+};
+
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -11,28 +42,84 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     console.log(selectedDates[0]);
+    const selectedDate = selectedDates[0];
+    const currentDate = new Date();
+
+    if (selectedDate <= currentDate) {
+      showIziToast();
+      startBtn.disabled = true;
+    } else {
+      startBtn.disabled = false;
+    };
+    userSelectedDate = selectedDate;
   },
 };
 
+flatpickr('#datetime-picker', options);
+
+// ПОЧАТОК ВІДЛІКУ ПРИ НАТИСКАННІ 
+
+const onBtnClick = () => {
+  if (isActive) {
+    return;
+  }
+  const startTime = new Date(userSelectedDate).getTime();
+  isActive = true;
+
+  intervalId = setInterval(() => {
+    const currentTime = Date.now();
+    const deltaTime = startTime - currentTime;
+
+    if (deltaTime <= 0) {
+      stopTimer();
+    } else {
+      const time = convertMs(deltaTime);
+      updateTimer(time);
+      startBtn.disabled = true;
+      input.disabled = true;
+    }
+  }, 1000);
+};
+
+// ФУНКЦІЯ ДЛЯ ЗУПИНКИ ТА ОЧИСТКИ 
+  
+const stopTimer = () => {
+  clearInterval(intervalId);
+  isActive = false;
+  input.disabled = false;
+  const time = convertMs(0);
+  updateTimer(time);
+};
+
+// КОНВЕРТАЦІЯ
+
 function convertMs(ms) {
-  // Number of milliseconds per unit of time
+
   const second = 1000;
   const minute = second * 60;
   const hour = minute * 60;
   const day = hour * 24;
 
-  // Remaining days
   const days = Math.floor(ms / day);
-  // Remaining hours
   const hours = Math.floor((ms % day) / hour);
-  // Remaining minutes
   const minutes = Math.floor(((ms % day) % hour) / minute);
-  // Remaining seconds
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
   return { days, hours, minutes, seconds };
-}
+};
 
-console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
+// ДОДАЄМО НУЛІ ЗА ДОПОМОГОЮ ПАД
+
+const addLeadingZero = value => String(value).padStart(2, '0');
+
+// ВІДМАЛЮВАННЯ ТАЙМЕРУ
+function updateTimer({ days, hours, minutes, seconds }) {
+  daysValue.textContent = `${addLeadingZero(days)}`;
+  hoursValue.textContent = `${addLeadingZero(hours)}`;
+  minutesValue.textContent = `${addLeadingZero(minutes)}`;
+  secondsValue.textContent = `${addLeadingZero(seconds)}`;
+};
+
+startBtn.addEventListener('click', onBtnClick);
+
+

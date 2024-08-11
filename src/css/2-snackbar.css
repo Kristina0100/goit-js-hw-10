@@ -1,35 +1,58 @@
-/* Reset styles */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin: 0;
+body {
+  font-family: Montserrat, sans-serif;
 }
 
-p:last-child {
-  margin-bottom: 0;
+form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 36px;
+  padding-left: 156px;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+input,
+fieldset {
+  max-width: 360px;
+  border-radius: 4px;
+  border: 1px solid #808080;
 }
 
-a {
-  color: currentColor;
-  text-decoration: none;
+input[name='delay'] {
+  height: 40px;
+}
+
+fieldset {
+  height: 64px;
+  flex-shrink: 0;
+  margin-top: 30px;
+}
+
+fieldset label {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+input label {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
 }
 
 button {
+  display: flex;
+  width: 360px;
+  padding: 8px 16px;
+  margin-top: 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #4e75ff;
+  color: #fff;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.64px;
   cursor: pointer;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
 }
