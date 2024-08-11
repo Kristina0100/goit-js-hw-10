@@ -24,7 +24,7 @@ const showIziToast = () => {
     messageSize: '16px',
     messageLineHeight: '24px',
     backgroundColor: '#EF4040',
-    iconUrl: '../img/error-icon.svg',
+    iconUrl: 'img/error-icon.svg',
     maxWidth: '302px',
     closeOnClick: true,
     position: 'topRight',
