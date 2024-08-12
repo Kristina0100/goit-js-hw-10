@@ -89,20 +89,3 @@ input:disabled {
   height: 24px;
   background: url('/img/error.svg') no-repeat 50% 50%;
 }
-
-.iziToast > .iziToast-close {
-  position: absolute;
-  right: 0;
-  top: 0;
-  border: 0;
-  padding: 0;
-  margin-top: 0;
-  opacity: 0.6;
-  width: 42px;
-  height: 100%;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAJPAAACTwBcGfW0QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAD3SURBVFiF1ZdtDoMgDEBfdi4PwAX8vLFn0qT7wxantojKupmQmCi8R4tSACpgjC2ICCUbEBa8ingjsU1AXRBeR8aLN64FiknswN8CYefBBDQ3whuFESy7WyQMeC0ipEI0A+0FeBvHUFN8xPaUhAH/iKoWsnXHGegy4J0yxialOfaHJAz4bhRzQzgDvdGnz4GbAonZbCQMuBm1K/kcFu8Mp1N2cFFpsxsMuJqqbIGExGl4loARajU1twskJLLhIsID7+tvUoDnIjTg5T9DPH9EBrz8rxjPzciAl9+O8SxI8CzJ8CxKFfh3ynK8Dyb8wNHM/XDqejx/AtNyPO87tNybAAAAAElFTkSuQmCC)
-    no-repeat 50% 50%;
-  background-size: 8px;
-  cursor: pointer;
-  outline: 0;
-}
