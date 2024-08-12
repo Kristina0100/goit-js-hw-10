@@ -16,7 +16,7 @@ const onFormSubmit = event => {
         messageSize: '16px',
         messageLineHeight: '24px',
         backgroundColor: '#EF4040',
-        iconUrl: '/img/error-icon.svg',
+        iconUrl: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0Ap1N2cFFpsxsMuJqqbIGExGl4loARajU1twskJLLhIsID7+tvUoDnIjTg5T9DPH9EBrz8rxjPzciAl9+O8SxI8CzJ8CxKFfh3ynK8Dyb8wNHM/XDqejx/AtNyPO87tNybAAAAAElFTkSuQmCC",
         closeOnClick: true,
         position: 'topRight',
         progressBarColor: '#B51B1B',
