@@ -7,7 +7,7 @@ const onFormSubmit = event => {
     event.preventDefault();
 
     let delay = Number(promiseForm.elements.delay.value);
-    let state = promiseForm.elements.state.value;
+    let states = promiseForm.elements.state.value;
 
     const showErrorMessage = delay => {
     iziToast.show({
@@ -39,7 +39,7 @@ const onFormSubmit = event => {
 
     const newPromise = new Promise((resolve, reject) => {
     setTimeout(() => {
-        if (state === 'fulfilled') {
+        if (states === 'fulfilled') {
         resolve(delay);
      } else {
         reject(delay);
