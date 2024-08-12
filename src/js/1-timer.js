@@ -26,6 +26,7 @@ const showIziToast = () => {
     backgroundColor: '#EF4040',
     iconUrl: "img/error.svg",
     // iconTag: 'svg',
+      timeout: 5000000000,
     maxWidth: '302px',
     closeOnClick: true,
     position: 'topRight',

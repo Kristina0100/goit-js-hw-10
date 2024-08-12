@@ -17,6 +17,7 @@ const onFormSubmit = event => {
         messageLineHeight: '24px',
         backgroundColor: '#EF4040',
         iconUrl: "img/error.svg",
+          timeout: 5000000000,
         closeOnClick: true,
         position: 'topRight',
         progressBarColor: '#B51B1B',
@@ -32,6 +33,7 @@ const onFormSubmit = event => {
         backgroundColor: '#59A10D',
         iconUrl: "img/success.svg",
         // closeOnClick: true,
+        timeout: 5000000000,
         position: 'topRight',
         progressBarColor: '#326101',
     });
